@@ -1,0 +1,37 @@
+services:
+  - name: postgres:10.0
+    alias: postgres
+
+cache:
+  paths:
+    - .cache/
+
+variables:
+  POSTGRES_DBNAME: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  DJANGO_SETTINGS_MODULE: config.settings.test
+  SECRET_KEY: secret
+  DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+
+stages:
+  - lint
+  - test
+
+python_linter:
+  stage: lint
+  image: python:3.6
+  script:
+    - pip install poetry
+    - poetry install
+    - poetry run flake8 .
+    - poetry run black --check .
+
+test_python:
+  image: python:3.6
+  stage: test
+  script:
+    - pip install poetry
+    - poetry install
+    - poetry run pytest --cov
