@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% trans "Signin" %}</title>
+    <title>{% trans "Sign up" %}</title>
 
     <!-- Bootstrap core CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,11 +34,8 @@
             {% csrf_token %}
             {{ form|crispy }}
             <button class="btn btn-lg btn-primary btn-block" type="submit">
-              <i class="fas fa-sign-in-alt"></i> {% trans "Sign in" %}
+              <i class="fas fa-sign-in-alt"></i> {% trans "Sign up" %}
             </button>
-            <a class="btn btn-lg btn-secondary btn-block" href="{% url "users:signup" %}">
-              {% trans "Create a new account" %}
-            </a>
           </form>
         </div>
       </div>

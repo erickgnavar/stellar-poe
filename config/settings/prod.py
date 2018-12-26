@@ -40,7 +40,7 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
-        "stellar_poe.invoices.tasks": {
+        "stellar_poe.stellar.utils": {
             "level": "WARNING",
             "handlers": ["console", "sentry"],
             "propagate": False,
