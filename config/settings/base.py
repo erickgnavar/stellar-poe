@@ -48,7 +48,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ["crispy_forms"]
 
-LOCAL_APPS = ["stellar_poe.users"]
+LOCAL_APPS = ["stellar_poe.common", "stellar_poe.users", "stellar_poe.transactions"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -146,3 +146,11 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 MESSAGE_TAGS = {messages.ERROR: "danger"}  # used to play nice with bootstrap4 styles
+
+DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+MINIO_STORAGE_ENDPOINT = os.environ.get("MINIO_ENDPOINT")
+MINIO_STORAGE_ACCESS_KEY = os.environ.get("MINIO_ACCESS_KEY")
+MINIO_STORAGE_SECRET_KEY = os.environ.get("MINIO_SECRET_KEY")
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_BUCKET_NAME = os.environ.get("MINIO_MEDIA_BUCKET")
+MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True

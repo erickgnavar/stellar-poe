@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block content %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Transactions</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-secondary" href="{% url "transactions:transaction-create" %}">
+          <i class="fas fa-plus"></i>
+          {% trans "New transaction" %}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>{% trans "Sender" %}</td>
+            <td>{% trans "Recipient" %}</td>
+            <td>{% trans "Message" %}</td>
+            <td>{% trans "File" %}</td>
+            <td>{% trans "File hash" %}</td>
+            <td>{% trans "Stellar transaction link" %}</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for transaction in transactions %}
+            <tr>
+              <td>
+                {{ transaction.sender.username }}
+              </td>
+              <td>
+                {{ transaction.recipient.username }}
+              </td>
+              <td>{{ transaction.message }}</td>
+              <td>
+                <a href="{{ transaction.file.url }}">
+                  {{ transaction.file.url }}
+                </a>
+              </td>
+              <td>{{ transaction.file_hash }}</td>
+              <td>
+                {% if transaction.is_submitted %}
+                  <a href="{{ transaction.stellar_transaction_link }}" target="_blank">
+                    {{ transaction.stellar_transaction_hash }}
+                  </a>
+                {% else %}
+                  {% trans "Transaction not submitted" %}
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url "transactions:transaction-detail" transaction.id %}">{% trans "View" %}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      {% include "_pagination.html" %}
+    </div>
+  </div>
+{% endblock content %}

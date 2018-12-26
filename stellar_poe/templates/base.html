@@ -44,8 +44,8 @@
 
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link {% if "transactions" in request.path %}active{% endif %}" href="#" %}">
-                  <span class="fas fa-users"></span>
+                <a class="nav-link {% if "transactions" in request.path %}active{% endif %}" href="{% url "transactions:transaction-list" %}">
+                  <span class="fas fa-exchange-alt"></span>
                   {% trans "Transactions" %}
                 </a>
               </li>

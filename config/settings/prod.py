@@ -6,6 +6,8 @@ INSTALLED_APPS += ["raven.contrib.django.raven_compat"]  # NOQA
 
 RAVEN_CONFIG = {"dsn": os.environ.get("DSN_URL")}  # NOQA
 
+MINIO_STORAGE_USE_HTTPS = True
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": True,

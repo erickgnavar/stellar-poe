@@ -16,6 +16,7 @@ raven = "^6.10"
 dj-database-url = "^0.5.0"
 stellar-base = "^1.0"
 mnemonic = "^0.18.0"
+django-minio-storage = "^0.2.2"
 
 [tool.poetry.dev-dependencies]
 pep8-naming = "^0.7.0"

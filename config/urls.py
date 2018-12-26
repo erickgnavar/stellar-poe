@@ -25,4 +25,5 @@ urlpatterns = [
     path("super/", admin.site.urls),
     path("", include("stellar_poe.users.urls", namespace="auth")),
     path("", HomeView.as_view(), name="home"),
+    path("", include("stellar_poe.transactions.urls", namespace="transactions")),
 ]
