@@ -42,7 +42,11 @@
                   {{ transaction.file.url }}
                 </a>
               </td>
-              <td>{{ transaction.file_hash }}</td>
+              <td>
+                {{ transaction.file_hash }}
+                <br/>
+                {{ transaction.hash_base64_encoded }}
+              </td>
               <td>
                 {% if transaction.is_submitted %}
                   <a href="{{ transaction.stellar_transaction_link }}" target="_blank">

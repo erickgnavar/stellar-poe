@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import uuid
 
@@ -47,3 +48,7 @@ class Transaction(TimeStampedModel):
 
     def compute_hash_file(self):
         self.file_hash = hashlib.md5(self.file.read()).hexdigest()
+
+    @property
+    def hash_base64_encoded(self):
+        return base64.encodestring(bytes(self.file_hash, "utf-8")).strip()
